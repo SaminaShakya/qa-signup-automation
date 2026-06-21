@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
 from playwright.sync_api import Page, expect
 from pages.signup_page import SignupPage
 from utils.email_otp import GmailOTPReader
@@ -6,7 +9,7 @@ import random
 
 def test_signup_flow(page: Page) -> None:
     TEST_EMAIL = "testingtask42@gmail.com"
-    APP_PASSWORD = "nvat baqz zsiy exea"
+    APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
 
     timestamp = int(time.time())
     email = f"testingtask42+test{timestamp}@gmail.com"
